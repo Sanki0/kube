@@ -1,0 +1,4 @@
+docker run --rm  -e FILENAME=sampledatafoodsales.xlsx --name test-xsltojson -it -v ~/Documents/personal/kubernetes:/app/data  xsltojson
+
+
+docker run --rm  -e FILENAME=sampledatafoodsales.xlsx --name test-countregistries -it -v ~/Documents/personal/kubernetes:/app/data  countregistries
