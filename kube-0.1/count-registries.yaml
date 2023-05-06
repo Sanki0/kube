@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: count-registries-deployment
+  labels:
+    app: countregistries
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: countregistries
+  template:
+    metadata:
+      labels:
+        app: countregistries
+    spec:
+      containers:
+      - name: countregistries
+        image: sanki0/countregistries
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: out
+          mountPath: /out
+      volumes:
+      - name: out
+        emptyDir: {}
+      dependsOn:
+      - name: xlsxtojson

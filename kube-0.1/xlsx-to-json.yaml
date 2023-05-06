@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xlsx-to-json-deployment
+  labels:
+    app: xlsxtojson
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: xlsxtojson
+  template:
+    metadata:
+      labels:
+        app: xlsxtojson
+    spec:
+      containers:
+      - name: xlsxtojson
+        image: xslxtojson
+        env:
+        - name: FILENAME
+          valueFrom:
+            configMapKeyRef:
+              name: xlsx-to-json-config
+              key: filename
+          volumeMounts:
+          - name: out
+            mountPath: /out
+      volumes:
+      - name: out
+        emptyDir: {}
