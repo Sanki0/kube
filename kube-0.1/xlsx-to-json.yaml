@@ -23,9 +23,10 @@ spec:
             configMapKeyRef:
               name: xlsx-to-json-config
               key: filename
-          volumeMounts:
-          - name: out
-            mountPath: /out
+        volumeMounts:
+        - name: app-data
+          mountPath: /app/data
       volumes:
-      - name: out
-        emptyDir: {}
+      - name: app-data
+        hostPath:
+            path: ~/Documents/personal/kubernetes

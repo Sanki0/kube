@@ -2,3 +2,18 @@ docker run --rm  -e FILENAME=sampledatafoodsales.xlsx --name test-xsltojson -it 
 
 
 docker run --rm  -e FILENAME=sampledatafoodsales.xlsx --name test-countregistries -it -v ~/Documents/personal/kubernetes:/app/data  countregistries
+
+
+docker start minikube || minikube start
+
+minikube delete 
+
+alias kubectl="minikube kubectl --"
+
+
+kubectl apply -f kube-0.1/xslx-to-json-config.yaml
+
+
+kubectl cluster-info
+
+kubectl get deployments 
